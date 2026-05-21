@@ -6,6 +6,17 @@
   <title>MVR 結算系統</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* 移除 Chrome, Safari, Edge, Opera 的上下小按鈕 */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    /* 移除 Firefox 的上下小按鈕 */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
     body { font-family: 'Noto Sans TC', sans-serif; background: #f4f7fa; padding: 20px 12px; margin: 0; color: #2d3748; }
     .card { background: white; padding: 25px 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(160, 174, 192, 0.15); max-width: 480px; margin: auto; }
     h2 { text-align: center; color: #1a365d; margin-top: 0; margin-bottom: 25px; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
@@ -22,23 +33,23 @@
 </head>
 <body>
   <div class="card">
-    <h2>MVR 結算系統</h2>
+    <h2>MVR 結算機</h2>
     <table>
       <tr><th colspan="2">📊 上一班數據</th></tr>
       <tr><td class="label">T602液位</td><td><input type="number" id="b2"></td></tr>
-      <tr><td class="label">MVR排放</td><td><input type="number" id="b3"></td></tr>
+      <tr><td class="label">MVR排放量</td><td><input type="number" id="b3"></td></tr>
       <tr><td class="label">自來水液位</td><td><input type="number" id="b4"></td></tr>
       <tr><th colspan="2" style="padding-top:15px;">📝 過程紀錄</th></tr>
-      <tr><td class="label">第一次補水</td><td><div style="display:flex; gap:8px;"><input type="number" id="b8" placeholder="前"><input type="number" id="c8" placeholder="後"></div></td></tr>
-      <tr><td class="label">第二次補水</td><td><div style="display:flex; gap:8px;"><input type="number" id="b9" placeholder="前"><input type="number" id="c9" placeholder="後"></div></td></tr>
-      <tr><td class="label">氯化銨 第一包</td><td><input type="number" id="b11" value="0"></td></tr>
-      <tr><td class="label">氯化銨 第二包</td><td><input type="number" id="b12" value="0"></td></tr>
-      <tr><td class="label">氯化銨 第三包</td><td><input type="number" id="b13" value="0"></td></tr>
-      <tr><td class="label">氯化銨 第四包</td><td><input type="number" id="b14" value="0"></td></tr>
-      <tr><td class="label">氯化銨 第五包</td><td><input type="number" id="b15" value="0"></td></tr>
+      <tr><td class="label">第一次 補水</td><td><div style="display:flex; gap:8px;"><input type="number" id="b8" placeholder="前"><input type="number" id="c8" placeholder="後"></div></td></tr>
+      <tr><td class="label">第二次 補水</td><td><div style="display:flex; gap:8px;"><input type="number" id="b9" placeholder="前"><input type="number" id="c9" placeholder="後"></div></td></tr>
+      <tr><td class="label">氯化銨 第一包</td><td><input type="number" id="b11"></td></tr>
+      <tr><td class="label">氯化銨 第二包</td><td><input type="number" id="b12"></td></tr>
+      <tr><td class="label">氯化銨 第三包</td><td><input type="number" id="b13"></td></tr>
+      <tr><td class="label">氯化銨 第四包</td><td><input type="number" id="b14"></td></tr>
+      <tr><td class="label">氯化銨 第五包</td><td><input type="number" id="b15"></td></tr>
       <tr><th colspan="2" style="padding-top:15px;">📈 本班數據</th></tr>
       <tr><td class="label">T602液位</td><td><input type="number" id="b19"></td></tr>
-      <tr><td class="label">MVR排放</td><td><input type="number" id="b20"></td></tr>
+      <tr><td class="label">MVR排放量</td><td><input type="number" id="b20"></td></tr>
       <tr><td class="label">自來水液位</td><td><input type="number" id="b21"></td></tr>
     </table>
     <button onclick="calc()">結算</button>
@@ -56,6 +67,7 @@
       document.getElementById('r26').innerText = (b11 + b12 + b13 + b14 + b15).toFixed(2);
       document.getElementById('r27').innerText = (((b4 - b8) + (c8 - b9) + (c9 - b21)) / 20).toFixed(2);
       document.getElementById('resBox').style.display = 'block';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   </script>
 </body>
